@@ -1,6 +1,6 @@
 pkgname=icu
-pkgver=77.1
-pkgrel=1
+pkgver=78.1
+pkgrel=2
 pkgdesc="International Components for Unicode library"
 arch=('x86_64')
 url="https://icu.unicode.org"
@@ -16,19 +16,8 @@ depends=(
     'glibc'
 )
 makedepends=('python')
-source=(https://github.com/unicode-org/icu/releases/download/release-${pkgver//./-}/icu4c-${pkgver//./_}-src.tgz
-    ICU-22132.patch)
-sha256sums=(588e431f77327c39031ffbb8843c0e3bc122c211374485fa87dc5f3faff24061
-    f534b472dd7a6961591466eef542e2c3ad698d3008c9b6af813c66cbc0b4dd8e)
-
-prepare() {
-    cd ${pkgname}/source
-
-    # Required fix for thunderbird 115 to show Calendar and sidebar properly
-    # https://bugzilla.mozilla.org/show_bug.cgi?id=1843007
-    # https://unicode-org.atlassian.net/browse/ICU-22132
-    patch -Np1 -i ${srcdir}/ICU-22132.patch
-}
+source=(https://github.com/unicode-org/icu/releases/download/release-${pkgver}/icu4c-${pkgver}-sources.tgz)
+sha256sums=(6217f58ca39b23127605cfc6c7e0d3475fe4b0d63157011383d716cb41617886)
 
 build() {
     cd ${pkgname}/source
